@@ -5595,6 +5595,22 @@ Private.event_prototypes = {
         conditionType = "number"
       },
       {
+        name = "attackpower",
+        display = L["Attack Power"],
+        type = "number",
+        init = "select(1, UnitAttackPower('player')) + select(2, UnitAttackPower('player'))",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "rangedattackpower",
+        display = L["Ranged Attack Power"],
+        type = "number",
+        init = "select(1, UnitRangedAttackPower('player')) + select(2, UnitRangedAttackPower('player'))",
+        store = true,
+        conditionType = "number"
+      },
+      {
         name = "meleecriticalrating",
         display = L["Melee Critical Rating"],
         type = "number",
@@ -5663,6 +5679,94 @@ Private.event_prototypes = {
         display = L["Spell Haste Rating"],
         type = "number",
         init = "GetCombatRating(CR_HASTE_SPELL)",
+        store = true,
+        conditionType = "number"
+      },
+	  {
+        name = "meleehitrating",
+        display = L["Melee Hit Rating"],
+        type = "number",
+        init = "GetCombatRating(CR_HIT_MELEE)",
+        store = true,
+        conditionType = "number"
+      },
+	  {
+        name = "meleehitpercent",
+        display = L["Melee Hit Percent (%)"],
+        type = "number",
+        init = "GetCombatRatingBonus(CR_HIT_MELEE)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "rangedhitrating",
+        display = L["Ranged Hit Rating"],
+        type = "number",
+        init = "GetCombatRating(CR_HIT_RANGED)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "rangedhitpercent",
+        display = L["Ranged Hit Percent (%)"],
+        type = "number",
+        init = "GetCombatRatingBonus(CR_HIT_RANGED)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "spellhitrating",
+        display = L["Spell Hit Rating"],
+        type = "number",
+        init = "GetCombatRating(CR_HIT_SPELL)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "spellhitpercent",
+        display = L["Spell Hit Percent (%)"],
+        type = "number",
+        init = "GetCombatRatingBonus(CR_HIT_SPELL)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "expertiserating",
+        display = L["Expertise Rating"],
+        type = "number",
+        init = "GetCombatRating(CR_EXPERTISE)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "expertisebonus",
+        display = L["Expertise Bonus"],
+        type = "number",
+        init = "GetCombatRatingBonus(CR_EXPERTISE)",
+        store = true,
+        conditionType = "number"
+      },
+     {		
+        name = "spellpenrating",
+        display = L["Spell Penetration Rating"],
+        type = "number",
+        init = "GetSpellPenetration()",
+        store = true,
+        conditionType = "number"
+      },
+	        {
+        name = "armorpenrating",
+        display = L["Armor Penetration Rating"],
+        type = "number",
+        init = "GetCombatRating(CR_ARMOR_PENETRATION)",
+        store = true,
+        conditionType = "number"
+      },
+      {
+        name = "armorpenpercent",
+        display = L["Armor Penetration Percent (%)"],
+        type = "number",
+        init = "GetCombatRatingBonus(CR_ARMOR_PENETRATION)",
         store = true,
         conditionType = "number"
       },
