@@ -5620,7 +5620,7 @@ Private.event_prototypes = {
       },
       {
         name = "meleecriticalpercent",
-        display = L["Mele Critical (%)"],
+        display = L["Melee Critical (%)"],
         type = "number",
         init = "GetCritChance()",
         store = true,
