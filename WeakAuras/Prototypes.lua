@@ -1975,7 +1975,7 @@ Private.event_prototypes = {
       {
         name = "sourceNpcId",
         display = L["Source NPC Id"],
-        type = "init",
+        type = "string",
         init = "tostring(tonumber(string.sub(sourceGUID or '', 8, 12), 16) or '')",
         enable = function(trigger)
           return not (trigger.subeventPrefix == "ENVIRONMENTAL")
@@ -2053,7 +2053,7 @@ Private.event_prototypes = {
       {
         name = "destNpcId",
         display = L["Destination NPC Id"],
-        type = "init",
+        type = "string",
         init = "tostring(tonumber(string.sub(destGUID or '', 8, 12), 16) or '')",
         enable = function(trigger)
           return not (trigger.subeventPrefix == "SPELL" and trigger.subeventSuffix == "_CAST_START");
