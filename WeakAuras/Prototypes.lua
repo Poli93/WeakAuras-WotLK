@@ -1303,7 +1303,7 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "init",
+        type = "string",
         store = true,
         conditionType = "init",
 		init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
@@ -1585,7 +1585,7 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "init",
+        type = "string",
         store = true,
         conditionType = "init",
         init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
@@ -1846,7 +1846,7 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "init",
+        type = "string",
         store = true,
         conditionType = "init",
         init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
