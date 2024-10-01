@@ -1303,10 +1303,10 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "string",
+        type = "init",
         store = true,
-        conditionType = "string",
-        test = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '') == %q",
+        conditionType = "init",
+		init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
       },
       {
         name = "attackable",
@@ -1585,10 +1585,10 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "string",
+        type = "init",
         store = true,
-        conditionType = "string",
-        test = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '') == %q",
+        conditionType = "init",
+        init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
       },
       {
         name = "class",
@@ -1846,10 +1846,10 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "string",
+        type = "init",
         store = true,
-        conditionType = "string",
-        test = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '') == %q",
+        conditionType = "init",
+        init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
       },
       {
         name = "class",
@@ -1975,8 +1975,8 @@ Private.event_prototypes = {
       {
         name = "sourceNpcId",
         display = L["Source NPC Id"],
-        type = "string",
-        test = "tostring(tonumber(string.sub(sourceGUID or '', 8, 12), 16) or '') == %q",
+        type = "init",
+        init = "tostring(tonumber(string.sub(sourceGUID or '', 8, 12), 16) or '')",
         enable = function(trigger)
           return not (trigger.subeventPrefix == "ENVIRONMENTAL")
         end,
@@ -2053,8 +2053,8 @@ Private.event_prototypes = {
       {
         name = "destNpcId",
         display = L["Destination NPC Id"],
-        type = "string",
-        test = "tostring(tonumber(string.sub(destGUID or '', 8, 12), 16) or '') == %q",
+        type = "init",
+        init = "tostring(tonumber(string.sub(destGUID or '', 8, 12), 16) or '')",
         enable = function(trigger)
           return not (trigger.subeventPrefix == "SPELL" and trigger.subeventSuffix == "_CAST_START");
         end,
@@ -5335,10 +5335,10 @@ Private.event_prototypes = {
       {
         name = "npcId",
         display = L["Npc ID"],
-        type = "string",
+        type = "init",
         store = true,
-        conditionType = "string",
-        test = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '') == %q",
+        conditionType = "init",
+        init = "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
         enable = function(trigger)
           return not trigger.use_inverse
         end
