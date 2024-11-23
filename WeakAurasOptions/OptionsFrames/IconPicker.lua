@@ -31,69 +31,66 @@ local function ConstructIconPicker(frame)
   group:AddChild(scroll);
 
   local function iconPickerFill(subname, doSort)
-    scroll:ReleaseChildren();
+  scroll:ReleaseChildren();
 
-    local distances = {};
-    local names = {};
+  local usedIcons = {};
+  local AddButton = function(name, icon)
+    local button = AceGUI:Create("WeakAurasIconButton");
+    button:SetName(name); 
+    button:SetTexture(icon);
+    button:SetClick(function()
+      group:Pick(icon);
+    end);
+    scroll:AddChild(button);
 
-    -- Work around special numbers such as inf and nan
-    if (tonumber(subname)) then
-      local spellId = tonumber(subname);
-      if (abs(spellId) < math.huge and tostring(spellId) ~= "nan") then
-        subname = GetSpellInfo(spellId or 0)
+    usedIcons[icon] = true;
+  end
+
+  local num = 0;
+  if subname and subname ~= "" then
+    subname = subname:lower(); 
+
+    for name, icons in pairs(spellCache.Get()) do
+      local nameMatches = name:lower():find(subname, 1, true);
+
+
+      local allIcons = {};
+      if icons.spells then
+        for spellId, icon in pairs(icons.spells) do
+          table.insert(allIcons, { spellId = spellId, icon = icon });
+        end
       end
-    end
+      if icons.achievements then
+        for _, icon in pairs(icons.achievements) do
+          table.insert(allIcons, { spellId = nil, icon = icon });
+        end
+      end
 
-    if subname then
-      subname = subname:lower();
-    end
+      for _, data in ipairs(allIcons) do
+        local icon = data.icon;
+        local spellId = data.spellId;
 
-    local usedIcons = {};
-    local AddButton = function(name, icon)
-      local button = AceGUI:Create("WeakAurasIconButton");
-      button:SetName(name);
-      button:SetTexture(icon);
-      button:SetClick(function()
-        group:Pick(icon);
-      end);
-      scroll:AddChild(button);
+        local iconMatches = icon:lower():find(subname, 1, true);
 
-      usedIcons[icon] = true;
-    end
+        if (nameMatches or iconMatches) and not usedIcons[icon] then
+          local displayName = iconMatches and icon or name;
+          AddButton(displayName, icon);
+          num = num + 1;
 
-    local num = 0;
-    if(subname and subname ~= "") then
-      for name, icons in pairs(spellCache.Get()) do
-        if(name:lower():find(subname, 1, true)) then
-          if icons.spells then
-            for spellId, icon in pairs(icons.spells) do
-              if (not usedIcons[icon]) then
-                AddButton(name, icon)
-                num = num + 1;
-                if(num >= 500) then
-                  break;
-                end
-              end
-            end
-          elseif icons.achievements then
-            for _, icon in pairs(icons.achievements) do
-              if (not usedIcons[icon]) then
-                AddButton(name, icon)
-                num = num + 1;
-                if(num >= 500) then
-                  break;
-                end
-              end
-            end
+          if num >= 500 then
+            break;
           end
         end
+      end
 
-        if(num >= 500) then
-          break;
-        end
+      if num >= 500 then
+        break;
       end
     end
   end
+end
+
+
 
   local input = CreateFrame("EDITBOX", "WeakAurasIconFilterInput", group.frame, "InputBoxTemplate");
   input:SetScript("OnTextChanged", function(...) iconPickerFill(input:GetText(), false); end);
